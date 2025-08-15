@@ -26,6 +26,15 @@ class WebhookController {
       const body = req.body;
       logger.info('Webhook recebido:', JSON.stringify(body, null, 2));
 
+      // UltraMessage
+      if (body.event_type === 'message_received' && body.data) {
+        const from = body.data.from.replace('@c.us', '');
+        const text = body.data.body;
+        await menuService.handleUserMessage(from, text);
+        return res.status(200).send('EVENT_RECEIVED');
+      }
+
+      // WhatsApp Business API (original)
       if (body.object === 'whatsapp_business_account') {
         body.entry?.forEach(async (entry) => {
           entry.changes?.forEach(async (change) => {
