@@ -1,6 +1,5 @@
 const menus = require('../data/menus.json');
 const responses = require('../data/responses.json');
-const whatsappService = require('./whatsapp.service');
 const ultramessageService = require('./ultramessage.service');
 const logger = require('../utils/logger');
 
@@ -22,10 +21,10 @@ class MenuService {
 
       // Resposta livre do usuário
       return await this.handleFreeText(from, message);
-      
+
     } catch (error) {
       logger.error(`Erro ao processar mensagem de ${from}:`, error);
-      return await whatsappService.sendTextMessage(
+      return await ultramessageService.sendTextMessage(
         from, 
         'Desculpe, ocorreu um erro. Digite "menu" para recomeçar.'
       );
@@ -49,19 +48,19 @@ class MenuService {
     // Verificar se é uma resposta final
     if (responses[buttonId]) {
       const response = responses[buttonId];
-      
-      await whatsappService.sendTextMessage(from, response.message);
-      
+
+      await ultramessageService.sendTextMessage(from, response.message);
+
       // Depois de 3 segundos, mostrar menu principal novamente
       setTimeout(async () => {
         await this.sendMenu(from, 'main');
       }, 3000);
-      
+
       return;
     }
 
     // Botão não encontrado
-    return await whatsappService.sendTextMessage(
+    return await ultramessageService.sendTextMessage(
       from, 
       'Opção não encontrada. Vou mostrar o menu principal:'
     ).then(() => this.sendMenu(from, 'main'));
@@ -75,7 +74,7 @@ class MenuService {
 
     const menuData = menus[menuId];
     this.userStates.set(from, menuId);
-    
+
     return await ultramessageService.sendTextMessage(from, menuData.message);
   }
 
