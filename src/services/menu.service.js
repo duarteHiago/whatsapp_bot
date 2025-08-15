@@ -1,6 +1,7 @@
 const menus = require('../data/menus.json');
 const responses = require('../data/responses.json');
 const whatsappService = require('./whatsapp.service');
+const ultramessageService = require('./ultramessage.service');
 const logger = require('../utils/logger');
 
 class MenuService {
@@ -75,11 +76,11 @@ class MenuService {
     const menuData = menus[menuId];
     this.userStates.set(from, menuId);
     
-    return await whatsappService.sendInteractiveMenu(from, menuData);
+    return await ultramessageService.sendTextMessage(from, menuData.message);
   }
 
   async handleFreeText(from, message) {
-    return await whatsappService.sendTextMessage(
+    return await ultramessageService.sendTextMessage(
       from,
       `Recebi sua mensagem: "${message}"\n\nPara melhor atendê-lo, use nosso menu:`
     ).then(() => this.sendMenu(from, 'main'));

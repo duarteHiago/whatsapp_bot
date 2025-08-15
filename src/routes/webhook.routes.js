@@ -7,6 +7,9 @@ const router = express.Router();
 router.get('/', webhookController.verifyWebhook);
 
 // Receber mensagens (POST)
-router.post('/', webhookController.receiveMessage);
+router.post('/', (req, res) => {
+  console.log('Recebi um POST no webhook:', req.body);
+  webhookController.receiveMessage(req, res);
+});
 
 module.exports = router;
