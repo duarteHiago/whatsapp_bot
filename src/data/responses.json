@@ -1,0 +1,22 @@
+{
+  "cardio": {
+    "type": "text",
+    "message": "❤️ **Cardiologia**\n\nDr. João Silva - CRM 12345\n• Consultas e check-ups\n• Eletrocardiograma\n• Teste de esforço\n\n💰 Consulta: R$ 180,00\n📞 Agendar: (65) 3333-4444"
+  },
+  "derma": {
+    "type": "text", 
+    "message": "🧴 **Dermatologia**\n\nDra. Maria Santos - CRM 67890\n• Consultas gerais\n• Tratamento de acne\n• Remoção de pintas\n\n💰 Consulta: R$ 160,00\n📞 Agendar: (65) 3333-4444"
+  },
+  "hoje": {
+    "type": "text",
+    "message": "📅 **Horários HOJE:**\n\n⏰ 14:30 - Dra. Ana (Pediatria)\n⏰ 15:45 - Dr. João (Cardiologia)\n⏰ 16:30 - Dra. Maria (Dermatologia)\n\n💬 Para confirmar, digite o horário desejado!"
+  },
+  "amanha": {
+    "type": "text",
+    "message": "📅 **Horários AMANHÃ:**\n\n⏰ 09:00 - Dr. Pedro (Ortopedia)\n⏰ 10:15 - Dra. Ana (Pediatria)\n⏰ 14:00 - Dr. João (Cardiologia)\n\n💬 Para confirmar, digite o horário desejado!"
+  },
+  "contato": {
+    "type": "contact",
+    "message": "📞 **Nossos Contatos:**\n\n🏥 Clínica Saúde Total\n📞 Telefone: (65) 3333-4444\n💬 WhatsApp: (65) 99999-8888\n📍 Av. Rubens de Mendonça, 1000\n🕐 Seg-Sex: 8h às 18h"
+  }
+}

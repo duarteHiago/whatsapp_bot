@@ -1,0 +1,84 @@
+{
+  "timestamp": "2025-08-15T17:21:22.900Z",
+  "level": "info",
+  "message": "🚀 Servidor rodando na porta 3000",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:21:42.015Z",
+  "level": "info",
+  "message": "🚀 Servidor rodando na porta 3000",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:22:35.852Z",
+  "level": "info",
+  "message": "🚀 Servidor rodando na porta 3000",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:24:24.571Z",
+  "level": "info",
+  "message": "🚀 Servidor rodando na porta 3000",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:24:36.363Z",
+  "level": "info",
+  "message": "🚀 Servidor rodando na porta 3000",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:24:56.087Z",
+  "level": "info",
+  "message": "🚀 Servidor rodando na porta 3000",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:24:59.484Z",
+  "level": "info",
+  "message": "🚀 Servidor rodando na porta 3000",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:25:30.578Z",
+  "level": "info",
+  "message": "🚀 Servidor rodando na porta 3000",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:25:35.721Z",
+  "level": "info",
+  "message": "🚀 Servidor rodando na porta 3000",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:25:48.164Z",
+  "level": "info",
+  "message": "🚀 Servidor rodando na porta 3000",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:26:32.086Z",
+  "level": "info",
+  "message": "Verificação webhook - Mode: subscribe, Token recebido: meu_token_secreto_123",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:26:32.087Z",
+  "level": "info",
+  "message": "Webhook verificado com sucesso",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:27:26.988Z",
+  "level": "info",
+  "message": "Verificação webhook - Mode: subscribe, Token recebido: meu_token_secreto_123",
+  "data": null
+}
+{
+  "timestamp": "2025-08-15T17:27:26.989Z",
+  "level": "info",
+  "message": "Webhook verificado com sucesso",
+  "data": null
+}
