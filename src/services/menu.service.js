@@ -21,7 +21,7 @@ class MenuService {
 
       // Resposta livre do usuário
       return await this.handleFreeText(from, message);
-      
+
     } catch (error) {
       logger.error(`Erro ao processar mensagem de ${from}:`, error);
       return await ultramessageService.sendTextMessage(

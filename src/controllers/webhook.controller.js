@@ -36,21 +36,7 @@ class WebhookController {
 
       // WhatsApp Business API (original)
       if (body.object === 'whatsapp_business_account') {
-        body.entry?.forEach(async (entry) => {
-          entry.changes?.forEach(async (change) => {
-            if (change.field === 'messages') {
-              const messages = change.value.messages;
-              
-              if (messages) {
-                for (const message of messages) {
-                  await this.processMessage(message, change.value);
-                }
-              }
-            }
-          });
-        });
-
-        res.status(200).send('EVENT_RECEIVED');
+        // ...existing code...
       } else {
         res.status(404).send('Not Found');
       }
