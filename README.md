@@ -85,7 +85,68 @@ O projeto seguirá uma **estrutura de branches dividida em quatro**:
 - `docs:` – alteração na documentação
 - `chore:` – tarefas administrativas ou mudanças de configuração
 
-## 6. Deployment / DevOps
+## 6. Container Docker do WhatsApp Bot
+
+O WhatsApp Bot foi dockerizado para facilitar o **deploy**, a **reprodutibilidade do ambiente** e o **compartilhamento do sistema**. A imagem inclui:
+
+- Aplicação Node.js do bot
+- Integração com a **Evolution API** para gerenciar instâncias do WhatsApp
+- Conexão com **PostgreSQL** para armazenamento de dados
+- **Redis** para cache de sessão e otimização de performance
+- Todas as dependências da aplicação já instaladas
+
+---
+
+### 📦 Imagem Docker
+
+- **Nome:** `yatoro900/whatsapp-bot`
+- **Tag:** `1.0`
+- **Disponível no Docker Hub:** https://hub.docker.com/r/yatoro900/whatsapp-bot
+
+---
+
+### ⚡ Como rodar
+
+1. **Baixar a imagem:**
+
+```bash
+docker pull yatoro900/whatsapp-bot:1.0
+
+```
+
+1. **Rodar o container:**
+
+```bash
+docker run -p 3000:3000 \
+  -e EVOLUTION_API_KEY=mude-me \
+  -e DATABASE_URL=postgresql://user:senha@postgres:5432/mydb \
+  -e REDIS_URL=redis://redis:6379 \
+  yatoro900/whatsapp-bot:1.0
+
+```
+
+> O container expõe a porta 3000 para o bot, permitindo envio de mensagens e integração via API.
+> 
+
+---
+
+### ⚙️ Variáveis de Ambiente
+
+- `EVOLUTION_API_KEY` – Chave da Evolution API
+- `DATABASE_URL` – URL de conexão do PostgreSQL
+- `REDIS_URL` – URL de conexão do Redis
+- `PORT` – Porta em que o bot será executado (default: 3000)
+
+---
+
+### ✅ Benefícios do Docker
+
+- Ambiente consistente, independente do sistema operacional
+- Deploy rápido em qualquer máquina ou servidor (local, EC2, etc.)
+- Isolamento das dependências do bot, Redis e PostgreSQL
+- Facilita compartilhamento da aplicação com outros desenvolvedores
+
+## 7. Deployment / DevOps
 
 O deployment do projeto **ainda está em estudo**. A ideia principal é garantir que o bot seja executável de forma isolada para cada cliente (single-tenant) e que possa ser facilmente replicado em diferentes instâncias.
 
