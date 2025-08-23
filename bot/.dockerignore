@@ -1,0 +1,15 @@
+# Ignorar dependências locais
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignorar logs da aplicação
+logs
+*.log
+
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de configuração local
+.env

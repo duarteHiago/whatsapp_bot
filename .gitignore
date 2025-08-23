@@ -1,0 +1,55 @@
+# ===============================
+# Node.js
+# ===============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# ===============================
+# Build / Output
+# ===============================
+dist/
+build/
+*.tmp
+*.log
+
+# ===============================
+# Environment / Secrets
+# ===============================
+.env
+.env.local
+.env.*.local
+
+# ===============================
+# WhatsApp Bot (EvolutionAPI)
+# ===============================
+# Pasta onde ficam sessões, tokens ou QRCodes do WhatsApp
+sessions/
+data/
+.qr-code/
+
+# ===============================
+# Docker
+# ===============================
+# Volumes de bancos/cache criados em containers
+postgres-data/
+redis-data/
+mysql-data/
+volumes/
+tmp/
+
+# ===============================
+# IDE / Sistema Operacional
+# ===============================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+Thumbs.db
