@@ -3,12 +3,16 @@ const axios = require('axios');
 const EVOLUTION_API_URL = process.env.EVOLUTION_API_URL;
 const EVOLUTION_API_KEY = process.env.EVOLUTION_API_KEY;
 
-exports.sendText = async (number, text) => {
+exports.sendDocument = async (number, url, filename) => {
   return axios.post(
-    `${EVOLUTION_API_URL}/message/sendText/instance_01`,
+    `${EVOLUTION_API_URL}/message/sendMedia/instance_01`,
     {
       number,
-      text // Mudança: enviar "text" diretamente, sem o objeto "textMessage"
+      mediaMessage: {
+        type: "document",
+        url,
+        filename
+      }
     },
     {
       headers: {

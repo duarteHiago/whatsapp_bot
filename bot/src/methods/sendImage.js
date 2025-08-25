@@ -3,12 +3,16 @@ const axios = require('axios');
 const EVOLUTION_API_URL = process.env.EVOLUTION_API_URL;
 const EVOLUTION_API_KEY = process.env.EVOLUTION_API_KEY;
 
-exports.sendText = async (number, text) => {
-  await axios.post(
-    `${EVOLUTION_API_URL}/message/sendText/instance_01`,
+exports.sendImage = async (number, url, caption) => {
+  return axios.post(
+    `${EVOLUTION_API_URL}/message/sendMedia/instance_01`,
     {
       number,
-      textMessage: { text }
+      mediaMessage: {
+        type: "image",
+        url,
+        caption
+      }
     },
     {
       headers: {
@@ -18,3 +22,4 @@ exports.sendText = async (number, text) => {
     }
   );
 };
+
