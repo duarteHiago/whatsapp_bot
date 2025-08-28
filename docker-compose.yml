@@ -1,0 +1,63 @@
+version: '3.9'
+
+services:
+  evolution-api:
+    image: atendai/evolution-api
+    container_name: evolution-api
+    ports:
+      - "8080:8080"
+    environment:
+      - AUTHENTICATION_API_KEY=mude-me
+      - DATABASE_ENABLED=true
+      - DATABASE_PROVIDER=postgresql
+      - DATABASE_CONNECTION_URI=postgresql://user:senha@postgres:5432/mydb?schema=public
+      - DATABASE_CONNECTION_CLIENT_NAME=evolution_exchange
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - CACHE_REDIS_URI=redis://redis:6379
+      - CONFIG_SESSION_PHONE_VERSION=2.3000.1026178298
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  bot-app:
+    build: ./bot
+    container_name: whatsapp-bot
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - EVOLUTION_API_URL=http://evolution-api:8080
+      - EVOLUTION_API_KEY=mude-me
+      - DATABASE_URL=postgresql://user:senha@postgres:5432/mydb
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - evolution-api
+      - postgres
+      - redis
+    command: node src/server.js
+    restart: unless-stopped
+
+volumes:
+  pgdata:

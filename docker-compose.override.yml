@@ -1,0 +1,8 @@
+services:
+  bot-app:
+    volumes:
+      - ./bot:/app
+      - /app/node_modules
+    command: npm run dev
+    env_file:
+      - .env
