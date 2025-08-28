@@ -20,35 +20,35 @@ O **WhatsApp Bot** é um projeto desenvolvido para automatizar interações via 
     - `express` – para criação do servidor web e endpoints REST.
     - `dotenv` – para gerenciamento de variáveis de ambiente.
 - **Banco de Dados:** MySQL (opcional, para armazenamento de histórico de mensagens ou dados de usuários).
-- **API/Biblioteca de WhatsApp:** **ainda em avaliação**.
-    - Atualmente, **WAPI** é a opção cotada, por permitir integração via WhatsApp Web.
-    - Pretende-se pesquisar outras alternativas, levando em consideração:
-        - **Custo**;
-        - **Dificuldade de implementação**;
-        - **Documentação completa e clara**;
-        - **Capacidade de manipular WhatsApp Flow** (interações, menus, respostas automáticas).
+- **Cache:** Redis
+- **API/Biblioteca de WhatsApp**
+    - Evolution API
 
 ---
 
 ## 3. Estrutura do Projeto
 
 ```
-whatsapp_bot/
+whatsapp-bot/
 │
-├─ data/
-│   ├─ menus.json          # Estrutura de menus e opções do bot
-│   └─ responses.json      # Respostas automáticas
+├─ src/
+│   ├─ controllers/      # Lógica de controle das rotas
+│   ├─ routes/           # Definição das rotas da API
+│   ├─ services/         # Serviços (Evolution API, banco, etc.)
+│   ├─ middlewares/      # Middlewares customizados
+│   └─ utils/            # Funções auxiliares
 │
-├─ services/
-│   └─ ultramessage.service.js  # Lógica de envio de mensagens
+├─ web/                  # Interface web (Vite + React + JS)
+│   ├─ src/              # Código-fonte do frontend
+│   └─ dist/             # Build de produção
 │
-├─ utils/
-│   └─ logger.js           # Funções de log
+├─ docker/
+│   ├─ dev.Dockerfile    # Configuração ambiente de desenvolvimento
+│   ├─ prod.Dockerfile   # Configuração ambiente de produção
+│   └─ docker-compose.yml
 │
-├─ server.js               # Servidor principal
-├─ package.json            # Dependências do projeto
-└─ .env                    # Variáveis de ambiente (não versionadas)
-
+├─ .env                  # Variáveis de ambiente
+└─ package.json
 ```
 
 ---
@@ -60,9 +60,9 @@ whatsapp_bot/
 | axios | Requisições HTTP para APIs externas | Em uso |
 | express | Criação de endpoints REST | Em uso |
 | dotenv | Gerenciamento de variáveis de ambiente | Em uso |
-| WAPI.js | Integração via WhatsApp Web | Cotada, em avaliação |
-| API Oficial WhatsApp | Envio de mensagens oficiais | A ser pesquisada |
-| MySQL | Armazenamento de informações de usuários e histórico | Em uso (opcional) |
+| Evolution API | Middleware para WhatsApp | Em uso |
+| Redis | Armazenamento de Cache | Em uso |
+| PostGress | Armazenamento de informações de usuários e histórico | Em uso (opcional) |
 
 ---
 
@@ -105,13 +105,47 @@ O WhatsApp Bot foi dockerizado para facilitar o **deploy**, a **reprodutibilidad
 
 ---
 
+## **Ambientes**
+
+### 🔹 Desenvolvimento
+
+- Usa **volumes** para sincronizar código local com o container.
+- Permite **hot reload** com `nodemon`.
+- Exemplo de execução:
+    
+    ```bash
+    docker-compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml up --build
+    
+    ```
+    
+
+### 🔹 Produção
+
+- Build otimizado sem volumes.
+- Código fica dentro do container, sem dependência do host.
+- Exemplo de execução:
+    
+    ```bash
+    docker-compose -f docker/docker-compose.yml -f docker/docker-compose.prod.yml up --build -d
+    
+    ```
+    
+
+---
+
+### Variáveis de ambiente principais
+
+- `EVOLUTION_API_KEY` → chave da Evolution API
+- `DATABASE_URL` → conexão PostgreSQL
+- `REDIS_URL` → conexão Redis
+- `PORT` → porta de execução do bot
+
 ### ⚡ Como rodar
 
 1. **Baixar a imagem:**
 
 ```bash
 docker pull yatoro900/whatsapp-bot:1.0
-
 ```
 
 1. **Rodar o container:**
