@@ -35,7 +35,8 @@ whatsapp-bot/
 │   ├─ controllers/      # Lógica de controle das rotas
 │   ├─ routes/           # Definição das rotas da API
 │   ├─ services/         # Serviços (Evolution API, banco, etc.)
-│   ├─ middlewares/      # Middlewares customizados
+│   ├─ methods/          # Metodos para envio de mensagens
+│   ├─ test/             # Test pre-definidos para os metodos
 │   └─ utils/            # Funções auxiliares
 │
 ├─ web/                  # Interface web (Vite + React + JS)
