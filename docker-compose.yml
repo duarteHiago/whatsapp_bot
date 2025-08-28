@@ -1,7 +1,6 @@
 version: '3.9'
 
 services:
-  # Evolution API
   evolution-api:
     image: atendai/evolution-api
     container_name: evolution-api
@@ -22,7 +21,6 @@ services:
       - redis
     restart: unless-stopped
 
-  # PostgreSQL
   postgres:
     image: postgres:15
     container_name: postgres
@@ -36,7 +34,6 @@ services:
       - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
-  # Redis
   redis:
     image: redis:alpine
     container_name: redis
@@ -44,7 +41,6 @@ services:
       - "6379:6379"
     restart: unless-stopped
 
-  # Bot Node.js
   bot-app:
     build: ./bot
     container_name: whatsapp-bot
@@ -60,6 +56,7 @@ services:
       - evolution-api
       - postgres
       - redis
+    command: node src/server.js
     restart: unless-stopped
 
 volumes:
