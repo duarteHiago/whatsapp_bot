@@ -1,6 +1,7 @@
 const express = require('express');
 const webhookRoutes = require('./routes/webhook');
 const logger = require('./utils/logger');
+const passiveRoutes = require('./routes/passiveRoutes');
 
 const app = express();
 const messageRoutes = require('./routes/messageRoutes')
@@ -10,5 +11,6 @@ app.use(logger); // middleware de logs
 
 app.use('/webhook', webhookRoutes);
 app.use('/messages', messageRoutes);
+app.use('/api', passiveRoutes);
 
 module.exports = app;

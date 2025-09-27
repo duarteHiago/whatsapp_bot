@@ -3,9 +3,9 @@ const { sendList } = require('../methods/sendList');
 
 (async () => {
   try {
-    const number = '5566984450236';
+    const number = '5566999029871';
     const listData = {
-      title: 'List Title',
+      title: 'TITULO ALTERADO',
       description: 'List description',
       buttonText: 'Click Here',
       footerText: 'footer list\nhttps://examplelink.com.br',
